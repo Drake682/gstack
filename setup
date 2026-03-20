@@ -46,7 +46,7 @@ fi
 ensure_playwright_browser() {
   (
     cd "$GSTACK_DIR"
-    bun --eval 'import { chromium } from "playwright"; const browser = await chromium.launch(); await browser.close();'
+    bun --eval 'import { chromium } from "playwright"; const browser = await chromium.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] }); await browser.close();'
   ) >/dev/null 2>&1
 }
 
